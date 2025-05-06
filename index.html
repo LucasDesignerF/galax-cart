@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy Cart - Crie sua Loja Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        .hover-scale {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-900">
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Header -->
+        <header class="glassmorphism text-white py-4 fixed top-0 w-full z-50 shadow-lg">
+            <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8">
+                <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Galaxy Cart</h1>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#planos" class="text-lg hover:text-yellow-300 transition duration-300">Planos</a>
+                    <a href="#contato" class="text-lg hover:text-yellow-300 transition duration-300">Contato</a>
+                </nav>
+                <button class="md:hidden text-2xl focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                    <i class='bx bx-menu'></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden glassmorphism">
+                <a href="#planos" class="block py-2 px-4 text-white hover:bg-indigo-600">Planos</a>
+                <a href="#contato" class="block py-2 px-4 text-white hover:bg-indigo-600">Contato</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center text-center text-white parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1556740738-6b4d43b29c75?q=80&w=1920');">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 animate-title">Crie sua Loja Online com a Galaxy Cart</h2>
+                <p class="text-lg sm:text-xl lg:text-2xl mb-8 max-w-3xl mx-auto">Transforme sua ideia em um e-commerce de sucesso com nossa plataforma moderna e intuitiva.</p>
+                <a href="#planos" class="inline-block bg-yellow-400 text-indigo-900 font-semibold text-lg py-3 px-8 rounded-full hover:bg-yellow-500 transition duration-300 hover-scale">Conheça os Planos</a>
+            </div>
+        </section>
+
+        <!-- Planos Section -->
+        <section id="planos" class="py-16 sm:py-24 bg-transparent">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-12">Nossos Planos</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    <!-- Plano 1 -->
+                    <div class="glassmorphism p-6 sm:p-8 rounded-2xl hover-scale plan-card">
+                        <i class='bx bx-store text-5xl text-yellow-400 mb-6'></i>
+                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-4">Loja de Variedades</h3>
+                        <p class="text-gray-200 mb-6">Perfeito para lojas de produtos diversos, com suporte completo.</p>
+                        <p class="text-3xl font-extrabold text-yellow-400 mb-6">R$29,90<span class="text-base font-medium">/mês</span></p>
+                        <a href="#" class="block bg-yellow-400 text-indigo-900 font-semibold py-3 px-6 rounded-full hover:bg-yellow-500 transition duration-300">Escolher Plano</a>
+                    </div>
+                    <!-- Plano 2 -->
+                    <div class="glassmorphism p-6 sm:p-8 rounded-2xl hover-scale plan-card">
+                        <i class='bx bx-server text-5xl text-yellow-400 mb-6'></i>
+                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-4">Loja de Servidores de Jogos</h3>
+                        <p class="text-gray-200 mb-6">Ideal para vendas de servidores de jogos com alta performance.</p>
+                        <p class="text-3xl font-extrabold text-yellow-400 mb-6">R$39,90<span class="text-base font-medium">/mês</span></p>
+                        <a href="#" class="block bg-yellow-400 text-indigo-900 font-semibold py-3 px-6 rounded-full hover:bg-yellow-500 transition duration-300">Escolher Plano</a>
+                    </div>
+                    <!-- Plano 3 -->
+                    <div class="glassmorphism p-6 sm:p-8 rounded-2xl hover-scale plan-card">
+                        <i class='bx bx-cart-alt text-5xl text-yellow-400 mb-6'></i>
+                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-4">Loja Híbrida</h3>
+                        <p class="text-gray-200 mb-6">Combine produtos e serviços em uma única loja versátil.</p>
+                        <p class="text-3xl font-extrabold text-yellow-400 mb-6">R$49,90<span class="text-base font-medium">/mês</span></p>
+                        <a href="#" class="block bg-yellow-400 text-indigo-900 font-semibold py-3 px-6 rounded-full hover:bg-yellow-500 transition duration-300">Escolher Plano</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato Section -->
+        <section id="contato" class="py-16 sm:py-24 text-center text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold mb-8">Entre em Contato</h2>
+                <p class="text-lg sm:text-xl mb-10 max-w-2xl mx-auto">Pronto para começar? Fale com nossa equipe e transforme sua visão em realidade!</p>
+                <a href="mailto:suporte@galaxycart.com" class="inline-block bg-yellow-400 text-indigo-900 font-semibold text-lg py-3 px-8 rounded-full hover:bg-yellow-500 transition duration-300 hover-scale">Enviar E-mail</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="glassmorphism text-white py-6 text-center">
+            <p class="text-sm sm:text-base">© 2025 Galaxy Cart. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Particles.js Configuration
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle", stroke: { width: 0, color: "#000000" } },
+                opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
+                size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1, sync: false } },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero title animation
+        gsap.from(".animate-title", {
+            y: 50,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power3.out"
+        });
+
+        // Plan cards animation
+        gsap.utils.toArray(".plan-card").forEach((card, i) => {
+            gsap.from(card, {
+                y: 100,
+                opacity: 0,
+                duration: 1,
+                delay: i * 0.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                }
+            });
+        });
+
+        // Parallax effect for hero section
+        gsap.to(".parallax-bg", {
+            backgroundPosition: "50% 100%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".parallax-bg",
+                scrub: true
+            }
+        });
+    </script>
+</body>
+</html>
