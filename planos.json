@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Loja de Variedades",
+        "description": "Ideal para vender contas de streaming (como Netflix), contas Steam, contas de jogos, keys, tokens e até Discord Nitro, com gerenciamento simplificado.",
+        "basePrice": 29.90,
+        "icon": "bx-store"
+    },
+    {
+        "name": "Loja de Servidores de Jogos",
+        "description": "Perfeito para quem possui servidores de jogos, como FiveM, e deseja vender VIPs, skins ou outros itens in-game diretamente na plataforma.",
+        "basePrice": 39.90,
+        "icon": "bx-server"
+    },
+    {
+        "name": "Loja Híbrida",
+        "description": "Combina as funcionalidades das duas lojas, permitindo vender contas, keys, tokens e itens de servidores de jogos em uma única plataforma versátil.",
+        "basePrice": 49.90,
+        "icon": "bx-cart-alt"
+    }
+]
