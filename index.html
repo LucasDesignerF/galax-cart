@@ -55,6 +55,13 @@
         .tilt-card {
             transform-style: preserve-3d;
         }
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1em;
+        }
     </style>
 </head>
 <body class="text-gray-900">
@@ -94,32 +101,18 @@
         <!-- Planos Section -->
         <section id="planos" class="py-16 sm:py-24 bg-transparent">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-12">Nossos Planos</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                    <!-- Plano 1 -->
-                    <div class="glassmorphism p-6 sm:p-8 rounded-3xl tilt-card plan-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.3">
-                        <i class='bx bx-store text-5xl text-yellow-400 mb-6'></i>
-                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-4">Loja de Variedades</h3>
-                        <p class="text-gray-200 mb-6">Ideal para vender contas de streaming (como Netflix), contas Steam, contas de jogos, keys, tokens e até Discord Nitro, com gerenciamento simplificado.</p>
-                        <p class="text-3xl font-extrabold text-yellow-400 mb-6">R$29,90<span class="text-base font-medium">/mês</span></p>
-                        <a href="#" class="block gradient-btn text-indigo-900 font-semibold py-3 px-6 rounded-full hover-scale">Escolher Plano</a>
-                    </div>
-                    <!-- Plano 2 -->
-                    <div class="glassmorphism p-6 sm:p-8 rounded-3xl tilt-card plan-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.3">
-                        <i class='bx bx-server text-5xl text-yellow-400 mb-6'></i>
-                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-4">Loja de Servidores de Jogos</h3>
-                        <p class="text-gray-200 mb-6">Perfeito para quem possui servidores de jogos, como FiveM, e deseja vender VIPs, skins ou outros itens in-game diretamente na plataforma.</p>
-                        <p class="text-3xl font-extrabold text-yellow-400 mb-6">R$39,90<span class="text-base font-medium">/mês</span></p>
-                        <a href="#" class="block gradient-btn text-indigo-900 font-semibold py-3 px-6 rounded-full hover-scale">Escolher Plano</a>
-                    </div>
-                    <!-- Plano 3 -->
-                    <div class="glassmorphism p-6 sm:p-8 rounded-3xl tilt-card plan-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.3">
-                        <i class='bx bx-cart-alt text-5xl text-yellow-400 mb-6'></i>
-                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-4">Loja Híbrida</h3>
-                        <p class="text-gray-200 mb-6">Combina as funcionalidades das duas lojas, permitindo vender contas, keys, tokens e itens de servidores de jogos em uma única plataforma versátil.</p>
-                        <p class="text-3xl font-extrabold text-yellow-400 mb-6">R$49,90<span class="text-base font-medium">/mês</span></p>
-                        <a href="#" class="block gradient-btn text-indigo-900 font-semibold py-3 px-6 rounded-full hover-scale">Escolher Plano</a>
-                    </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-8">Nossos Planos</h2>
+                <div class="mb-12">
+                    <label for="billing-period" class="text-white text-lg font-semibold mr-4">Período de Cobrança:</label>
+                    <select id="billing-period" class="glassmorphism text-white py-2 px-4 rounded-full focus:outline-none cursor-pointer">
+                        <option value="monthly">Mensal</option>
+                        <option value="quarterly">Trimestral (5% de desconto)</option>
+                        <option value="semiannual">Semestral (10% de desconto)</option>
+                        <option value="annual">Anual (15% de desconto)</option>
+                    </select>
+                </div>
+                <div id="plans-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    <!-- Planos serão preenchidos dinamicamente via JavaScript -->
                 </div>
             </div>
         </section>
@@ -179,21 +172,23 @@
             ease: "elastic.out(1, 0.5)"
         });
 
-        // Plan cards animation
-        gsap.utils.toArray(".plan-card").forEach((card, i) => {
-            gsap.from(card, {
-                y: 120,
-                opacity: 0,
-                duration: 1.2,
-                delay: i * 0.3,
-                ease: "power4.out",
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 85%",
-                    toggleActions: "play none none none"
-                }
+        // Plan cards animation (aplicado após renderização)
+        function animatePlanCards() {
+            gsap.utils.toArray(".plan-card").forEach((card, i) => {
+                gsap.from(card, {
+                    y: 120,
+                    opacity: 0,
+                    duration: 1.2,
+                    delay: i * 0.3,
+                    ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                });
             });
-        });
+        }
 
         // Parallax effect for hero section
         gsap.to(".parallax-bg", {
@@ -205,13 +200,80 @@
             }
         });
 
-        // Initialize Vanilla Tilt
-        VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
-            max: 10,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.3
-        });
+        // Renderizar Planos Dinamicamente
+        const plansContainer = document.getElementById('plans-container');
+        const billingPeriodSelect = document.getElementById('billing-period');
+
+        function renderPlans(planosData) {
+            plansContainer.innerHTML = '';
+            planosData.forEach(plan => {
+                const planCard = document.createElement('div');
+                planCard.className = 'glassmorphism p-6 sm:p-8 rounded-3xl tilt-card plan-card';
+                planCard.setAttribute('data-tilt', '');
+                planCard.setAttribute('data-tilt-max', '10');
+                planCard.setAttribute('data-tilt-speed', '400');
+                planCard.setAttribute('data-tilt-glare', 'true');
+                planCard.setAttribute('data-tilt-max-glare', '0.3');
+                planCard.innerHTML = `
+                    <i class='bx ${plan.icon} text-5xl text-yellow-400 mb-6'></i>
+                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-4">${plan.name}</h3>
+                    <p class="text-gray-200 mb-6">${plan.description}</p>
+                    <p class="text-3xl font-extrabold text-yellow-400 mb-6 plan-price" data-base-price="${plan.basePrice}">R$${plan.basePrice.toFixed(2)}<span class="text-base font-medium">/mês</span></p>
+                    <a href="#" class="block gradient-btn text-indigo-900 font-semibold py-3 px-6 rounded-full hover-scale">Escolher Plano</a>
+                `;
+                plansContainer.appendChild(planCard);
+            });
+            VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
+                max: 10,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.3
+            });
+            animatePlanCards();
+            updatePrices();
+        }
+
+        // Atualizar Preços
+        function updatePrices() {
+            const period = billingPeriodSelect.value;
+            const discounts = {
+                monthly: 1,
+                quarterly: 0.95, // 5% de desconto
+                semiannual: 0.90, // 10% de desconto
+                annual: 0.85 // 15% de desconto
+            };
+            const periods = {
+                monthly: { label: '/mês', months: 1 },
+                quarterly: { label: '/trimestre', months: 3 },
+                semiannual: { label: '/semestre', months: 6 },
+                annual: { label: '/ano', months: 12 }
+            };
+
+            document.querySelectorAll('.plan-price').forEach(priceElement => {
+                const basePrice = parseFloat(priceElement.getAttribute('data-base-price'));
+                const totalPrice = (basePrice * periods[period].months * discounts[period]).toFixed(2);
+                const periodLabel = periods[period].label;
+                priceElement.innerHTML = `R$${totalPrice}<span class="text-base font-medium">${periodLabel}</span>`;
+            });
+        }
+
+        // Carregar Planos do planos.json
+        fetch('/planos.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar planos.json');
+                }
+                return response.json();
+            })
+            .then(data => {
+                renderPlans(data);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                plansContainer.innerHTML = '<p class="text-white text-center">Erro ao carregar os planos. Tente novamente mais tarde.</p>';
+            });
+
+        billingPeriodSelect.addEventListener('change', updatePrices);
     </script>
 </body>
 </html>
